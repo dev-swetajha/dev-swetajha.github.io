@@ -163,6 +163,7 @@
       display: flex; gap: 3rem;
       margin-top: 4rem; padding-top: 2.5rem;
       border-top: 1px solid rgba(255,255,255,.08);
+      flex-wrap: wrap;
     }
     .stat-num {
       font-family: var(--display); font-size: 2.2rem; font-weight: 700;
@@ -352,6 +353,19 @@
     }
     .proj-card:hover { border-color: rgba(108,71,255,.3); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.08); }
     .proj-card:hover::before { transform: scaleX(1); }
+    .proj-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #fbfaf8 0%, var(--white) 60%);
+      border-color: rgba(108,71,255,.25);
+    }
+    .proj-card.featured::before { transform: scaleX(1); }
+    .proj-link {
+      font-family: var(--mono); font-size: .75rem;
+      color: var(--violet); display: inline-flex; align-items: center; gap: .35rem;
+      margin-bottom: .9rem; border-bottom: 1px solid rgba(108,71,255,.3);
+      padding-bottom: 1px; width: fit-content;
+    }
+    .proj-link:hover { color: var(--violet-lt); border-color: var(--violet-lt); }
     .proj-tag {
       font-family: var(--mono); font-size: .7rem; font-weight: 500;
       letter-spacing: .07em; text-transform: uppercase;
@@ -364,6 +378,17 @@
     .proj-desc {
       font-size: .9rem; line-height: 1.7; color: var(--text-mid);
       margin-bottom: 1.4rem;
+    }
+    .proj-highlights {
+      display: flex; flex-direction: column; gap: .5rem;
+      margin-bottom: 1.4rem;
+    }
+    .proj-highlight {
+      display: flex; align-items: flex-start; gap: .6rem;
+      font-size: .87rem; line-height: 1.65; color: var(--text-mid);
+    }
+    .proj-highlight::before {
+      content: '→'; color: var(--violet); flex-shrink: 0; margin-top: .05rem;
     }
     .proj-stack { display: flex; flex-wrap: wrap; gap: .45rem; }
     .proj-tech {
@@ -434,6 +459,7 @@
       .exp-item::after { display: none; }
       .hero-stats { gap: 1.8rem; }
       .nav-links { display: none; }
+      .proj-card.featured { grid-column: span 1; }
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal { transition: none; }
@@ -500,6 +526,7 @@
         <h2 class="section-heading">Crafting e-commerce, one component at a time.</h2>
         <p>I'm a Software Engineer based in <strong>Ahmedabad, Gujarat</strong>, specializing in Shopify development and full-stack e-commerce engineering. I bridge design and technology to build stores that perform.</p>
         <p>Starting as a PHP developer, I transitioned into Shopify and the MERN stack — developing custom apps, headless storefronts using <strong>Hydrogen + Remix</strong>, and deep API integrations that push what's possible in e-commerce.</p>
+        <p>My recent focus has been on <strong>checkout extensibility, customer account customization, and theme-level architecture</strong> for large, multi-environment Shopify builds — including designing Git-based sync workflows between staging and production stores.</p>
         <p>I care about clean code, clear communication with clients, and continuous learning. Outside of shipping features, I'm sharpening skills in modern web performance and platform architecture.</p>
         <div class="about-contact">
           <a href="mailto:swetajha.cs@gmail.com">
@@ -548,6 +575,9 @@
           <span class="skill-tag featured">Shopify</span>
           <span class="skill-tag featured">Liquid</span>
           <span class="skill-tag featured">Shopify CLI</span>
+          <span class="skill-tag featured">Checkout Extensibility</span>
+          <span class="skill-tag featured">Customer Account Customization</span>
+          <span class="skill-tag featured">Metaobjects</span>
           <span class="skill-tag">Hydrogen</span>
           <span class="skill-tag">Remix</span>
           <span class="skill-tag">Online Store 2.0</span>
@@ -582,7 +612,9 @@
       <div class="skill-category reveal">
         <div class="skill-cat-label">Tools &amp; Workflow</div>
         <div class="skill-tags">
-          <span class="skill-tag">Git</span>
+          <span class="skill-tag featured">Git</span>
+          <span class="skill-tag featured">GitHub Actions</span>
+          <span class="skill-tag featured">Multi-store Git Sync</span>
           <span class="skill-tag">GitHub</span>
           <span class="skill-tag">GitLab</span>
           <span class="skill-tag">phpMyAdmin</span>
@@ -611,6 +643,9 @@
           <p class="exp-desc">Drove development of e-commerce solutions across Shopify and MERN stack, delivering scalable, high-performance applications for clients across industries.</p>
           <div class="exp-highlights">
             <span class="exp-highlight">Spearheaded Shopify theme customization using Liquid, meta fields, and Online Store 2.0, boosting user experience and store performance.</span>
+            <span class="exp-highlight">Led customer registration and checkout customization on a major enterprise Shopify project, including checkout extensibility and custom account flows.</span>
+            <span class="exp-highlight">Designed and implemented a Git-based sync workflow between two Shopify store environments using a shared repository and GitHub Actions — building the entire workflow from scratch.</span>
+            <span class="exp-highlight">Discovered and built a custom solution for dynamic content and sections on blog pages using Shopify metaobjects, independently architected end-to-end.</span>
             <span class="exp-highlight">Developed public and private custom Shopify apps with Node.js, Express, and MongoDB via Shopify CLI.</span>
             <span class="exp-highlight">Implemented headless commerce with Hydrogen + Remix for faster, modular storefronts.</span>
             <span class="exp-highlight">Integrated REST and GraphQL APIs for dynamic product sync, checkout customization, and third-party services.</span>
@@ -645,6 +680,26 @@
       <p class="section-sub reveal">A few highlights from client and internal projects — more details available on request.</p>
     </div>
     <div class="projects-grid">
+      <div class="proj-card featured reveal">
+        <div class="proj-tag">Shopify · Enterprise Retail</div>
+        <a href="https://www.haymespaint.com.au/" target="_blank" rel="noopener" class="proj-link">
+          haymespaint.com.au ↗
+        </a>
+        <div class="proj-title">Haymes Paint</div>
+        <p class="proj-desc">Australia's first family-owned paint brand, founded in Ballarat in 1935 and now the country's largest family-owned paint company with 400+ team members and a nationwide network of stores. Contributed to a major storefront customization project as part of the core engineering effort.</p>
+        <div class="proj-highlights">
+          <span class="proj-highlight">Owned major parts of the customer registration and checkout flow, including custom checkout extensibility work.</span>
+          <span class="proj-highlight">Designed and built Git-based syncing between two Shopify environments through a shared repository, using GitHub Actions to automate the workflow.</span>
+          <span class="proj-highlight">Independently discovered and implemented a metaobject-driven solution for rendering dynamic content/sections on blog pages.</span>
+        </div>
+        <div class="proj-stack">
+          <span class="proj-tech">Shopify</span>
+          <span class="proj-tech">Liquid</span>
+          <span class="proj-tech">Checkout Extensibility</span>
+          <span class="proj-tech">Metaobjects</span>
+          <span class="proj-tech">GitHub Actions</span>
+        </div>
+      </div>
       <div class="proj-card reveal">
         <div class="proj-tag">Trading Platform</div>
         <div class="proj-title">AlgoTrade</div>
@@ -770,4 +825,4 @@
     });
   </script>
 </body>
-</html> 
+</html>
